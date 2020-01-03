@@ -1,0 +1,54 @@
+#dareContainer {
+  background: transparent;
+}
+
+#bodyid{
+  background-color: #e9ebee;
+}
+
+#username {
+  font-size: 40px;
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+  text-align: center;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+#dareText {
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
+#level {
+  font-size: 40px;
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
+#player {
+  margin-top: 25px;
+  background-color: #dfe3ee;
+}
+
+#background {
+  background-color: #dfe3ee;
+}
+
+#banner {
+  background-color: #3b5998;
+  margin-bottom: 25px;
+}
+
+h1 {
+  color: white;
+}
+
+#hamburger {
+  margin-top: 5px;
+  color: white;
+}
+
+button {
+  background-color: Transparent;
+  border: none;
+  outline:none;
+}

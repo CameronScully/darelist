@@ -128,6 +128,14 @@ class AddPlayer extends React.Component {
 }
 
 class DareList extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      players: []
+    }
+  }
+
+
   render() {
     return(
       <div class="container-fluid" align="center">

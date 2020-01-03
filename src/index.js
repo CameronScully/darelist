@@ -119,7 +119,7 @@ class AddPlayer extends React.Component {
   render(){
     return(
       <div>
-        <button>
+        <button onClick={this.props.onClick}>
           <FontAwesomeIcon icon={faPlusCircle} size="2x" />
         </button>
       </div>
@@ -130,11 +130,27 @@ class AddPlayer extends React.Component {
 class DareList extends React.Component {
   constructor(props){
     super(props);
+
     this.state = {
-      players: []
+      players: [],
     }
+
+    this.addPlayer = this.addPlayer.bind(this);
   }
 
+  addPlayer(){
+    console.log("ping");
+
+    var players = this.state.players.concat({
+      name: "Player Name",
+      risk: 0,
+      dares: []
+    });
+
+    this.setState(
+      players: this.state.players.concat(players.size())
+    );
+  }
 
   render() {
     return(
@@ -150,13 +166,19 @@ class DareList extends React.Component {
         </div>
         <div class="row">
           <div class="col-1 offset-md-2">
-            <AddPlayer />
+            <AddPlayer onClick={this.addPlayer} />
           </div>
         </div>
         <div class="row">
-          <div class="col">
-            <Player />
-          </div>
+          {this.state.players.map((player) => (
+            <div class="col" key={value}>
+              <Player
+                name={player.name}
+                risk={player.risk}
+                dares={player.dares}
+              />
+            </div>
+          ))}
         </div>
       </div>
     );

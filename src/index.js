@@ -108,7 +108,7 @@ class Player extends React.Component{
         <div class="row">
           <div class="col">
             <form onSubmit={this.handleSubmit} onKeyDown={this.handleKeypress}>
-              <input type="text" id="username" value={this.state.value} onChange={this.handleChange}/>
+              <input type="text" placeholder="Player Name" id="username" value={this.state.value} onChange={this.handleChange}/>
             </form>
           </div>
         </div>
@@ -129,19 +129,6 @@ class Player extends React.Component{
   }
 }
 
-//class
-class AddPlayer extends React.Component {
-  render(){
-    return(
-      <div>
-        <button onClick={this.props.onClick}>
-          <FontAwesomeIcon icon={faPlusCircle} size="2x" />
-        </button>
-      </div>
-    );
-  }
-}
-
 class DareList extends React.Component {
   constructor(props){
     super(props);
@@ -153,11 +140,9 @@ class DareList extends React.Component {
     this.addPlayer = this.addPlayer.bind(this);
   }
 
-  addPlayer(){
-    console.log("ping");
-
+  addPlayer(event){
     var players = this.state.players.concat({
-      name: "Player Name",
+      name: "",
       risk: 0,
       dares: []
     });
@@ -177,7 +162,20 @@ class DareList extends React.Component {
         </div>
         <div class="row">
           <div class="col-2">
-            <AddPlayer onClick={this.addPlayer} />
+            <div class="row">
+              <div class="col">
+                <button class="hamburger" onClick={this.addPlayer}>
+                  <FontAwesomeIcon icon={faPlusCircle} size="2x" />
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+              <button class="hamburger" onClick={this.dareAll}>
+                <FontAwesomeIcon icon={faCrosshairs} size="2x" />
+              </button>
+              </div>
+            </div>
           </div>
           <div class="col-8">
             {this.state.players.map((player) => (
@@ -194,35 +192,6 @@ class DareList extends React.Component {
           </div>
         </div>
       </div>
-      /*
-      <div class="container-fluid" align="center">
-        <div class="row" id="banner">
-          <div class="col">
-            insert dropdown here
-          </div>
-          <div class="col">
-            <h1>darelist</h1>
-          </div>
-          <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col-1 offset-md-2">
-            <AddPlayer onClick={this.addPlayer} />
-          </div>
-        </div>
-        {this.state.players.map((player) => (
-          <div class="row">
-            <div class="col" key={player.name}>
-              <Player
-                name={player.name}
-                risk={player.risk}
-                dares={player.dares}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-      */
     );
   }
 }

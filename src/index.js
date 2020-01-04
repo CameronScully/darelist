@@ -108,7 +108,7 @@ class Player extends React.Component{
         <div class="row">
           <div class="col">
             <form onSubmit={this.handleSubmit} onKeyDown={this.handleKeypress}>
-              <input type="text" placeholder="Player Name" id="username" value={this.state.value} onChange={this.handleChange}/>
+              <input type="text" placeholder="Player" id="username" value={this.state.value} onChange={this.handleChange}/>
             </form>
           </div>
         </div>
@@ -140,7 +140,7 @@ class DareList extends React.Component {
     this.addPlayer = this.addPlayer.bind(this);
   }
 
-  addPlayer(event){
+  addPlayer(){
     var players = this.state.players.concat({
       name: "",
       risk: 0,
@@ -150,6 +150,18 @@ class DareList extends React.Component {
     this.setState({
       players: players
     });
+  }
+
+  dareAll(){
+    for(var i=0; i<this.state.players.size(); i++){
+      //pick random dares
+
+      //allocate dares
+      var player = this.state.players[i].dares.concat({
+        text: "Random dare number X text",
+        risk: 5
+      })
+    }
   }
 
   render() {

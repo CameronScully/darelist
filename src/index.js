@@ -81,12 +81,24 @@ class Player extends React.Component{
   constructor(props){
     super(props);
     this.state = {value: "Player name"};
-
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeypress = this.handleKeypress.bind(this);
   }
 
   handleChange(event){
     this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+  }
+
+  handleKeypress(event){
+    if(event.key == "Enter"){
+      event.target.blur();
+      this.handleSubmit(event);
+    }
   }
 
   render(){
@@ -94,7 +106,7 @@ class Player extends React.Component{
       <div class="container shadow" id="player">
         <div class="row">
           <div class="col" align="center">
-            <form>
+            <form onSubmit={this.handleSubmit} onKeyDown={this.handleKeypress}>
               <input type="text" id="username" value={this.state.value} onChange={this.handleChange}/>
             </form>
           </div>
@@ -147,9 +159,9 @@ class DareList extends React.Component {
       dares: []
     });
 
-    this.setState(
-      players: this.state.players.concat(players.size())
-    );
+    this.setState({
+      players: players
+    });
   }
 
   render() {
@@ -169,17 +181,17 @@ class DareList extends React.Component {
             <AddPlayer onClick={this.addPlayer} />
           </div>
         </div>
-        <div class="row">
-          {this.state.players.map((player) => (
-            <div class="col" key={value}>
+        {this.state.players.map((player) => (
+          <div class="row">
+            <div class="col" key={player.name}>
               <Player
                 name={player.name}
                 risk={player.risk}
                 dares={player.dares}
               />
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     );
   }

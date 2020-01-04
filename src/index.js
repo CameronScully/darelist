@@ -13,6 +13,7 @@ import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCrosshairs } from '@fortawesome/free-solid-svg-icons'
 
 class ThumbsUp extends React.Component{
   render(){
@@ -80,7 +81,7 @@ class Slider extends React.Component {
 class Player extends React.Component{
   constructor(props){
     super(props);
-    this.state = {value: "Player name"};
+    this.state = {value: this.props.name};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeypress = this.handleKeypress.bind(this);
@@ -105,20 +106,22 @@ class Player extends React.Component{
     return(
       <div class="container shadow" id="player">
         <div class="row">
-          <div class="col" align="center">
+          <div class="col">
             <form onSubmit={this.handleSubmit} onKeyDown={this.handleKeypress}>
               <input type="text" id="username" value={this.state.value} onChange={this.handleChange}/>
             </form>
           </div>
         </div>
         <div class="row">
-          <div class="col" align="center">
+          <div class="col">
             <Slider />
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <Dare />
+            {this.props.dares.map((dare, index) =>
+              <Dare name={this.props.dares.name} />
+            )}
           </div>
         </div>
       </div>
@@ -169,6 +172,32 @@ class DareList extends React.Component {
       <div class="container-fluid" align="center">
         <div class="row" id="banner">
           <div class="col">
+            <h1>darelist</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <AddPlayer onClick={this.addPlayer} />
+          </div>
+          <div class="col-8">
+            {this.state.players.map((player) => (
+              <div class="row">
+                <div class="col" key={player.name}>
+                  <Player
+                    name={player.name}
+                    risk={player.risk}
+                    dares={player.dares}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      /*
+      <div class="container-fluid" align="center">
+        <div class="row" id="banner">
+          <div class="col">
             insert dropdown here
           </div>
           <div class="col">
@@ -193,6 +222,7 @@ class DareList extends React.Component {
           </div>
         ))}
       </div>
+      */
     );
   }
 }

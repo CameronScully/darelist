@@ -11,6 +11,7 @@
   font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
   text-align: center;
   border: none;
+  width: 100%;
   outline: none;
   background: transparent;
 }
@@ -51,4 +52,8 @@ button {
   background-color: Transparent;
   border: none;
   outline:none;
+}
+
+#gridDebug{
+  border: 1px solid;
 }

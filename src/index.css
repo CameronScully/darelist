@@ -43,15 +43,13 @@ h1 {
   color: white;
 }
 
-#hamburger {
-  margin-top: 5px;
-  color: white;
+.hamburger {
+  margin-top: 25px;
 }
 
 button {
   background-color: Transparent;
   border: none;
-  outline:none;
 }
 
 #gridDebug{

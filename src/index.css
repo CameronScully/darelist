@@ -1,5 +1,7 @@
 #dareContainer {
   background: transparent;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 #bodyid{
@@ -27,6 +29,7 @@
 
 #player {
   margin-top: 25px;
+  padding-bottom: 15px;
   background-color: #dfe3ee;
 }
 

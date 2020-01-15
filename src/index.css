@@ -18,6 +18,11 @@
   background: transparent;
 }
 
+#multiplier {
+  font-size: 40px;
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
 #dareText {
   font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 }

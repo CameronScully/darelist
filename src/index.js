@@ -16,6 +16,7 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { faCrosshairs } from '@fortawesome/free-solid-svg-icons'
 import { faDice } from '@fortawesome/free-solid-svg-icons'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
 
 class Dare extends React.Component{
   render(){
@@ -27,14 +28,6 @@ class Dare extends React.Component{
           </div>
         </div>
       </div>
-    );
-  }
-}
-
-class Slider extends React.Component {
-  render(){
-    return(
-      <input type="range" min="0" max="5"/>
     );
   }
 }
@@ -60,10 +53,14 @@ class PlayerControls extends React.Component {
 class Player extends React.Component{
   constructor(props){
     super(props);
-    this.state = {value: this.props.name};
+    this.state = {
+      value: this.props.name,
+      multiplier: this.props.multiplier
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeypress = this.handleKeypress.bind(this);
+    this.handleSlide = this.handleSlide.bind(this);
   }
 
   handleChange(event){
@@ -81,11 +78,17 @@ class Player extends React.Component{
     }
   }
 
+  handleSlide(event){
+    this.setState({
+      multiplier: event.target.value
+    })
+  }
+
   render(){
     return(
       <div class="container shadow" id="player">
         <div class="row">
-          <div class="col" align="right">
+          <div class="col-10 offset-2" align="right">
             <PlayerControls
               clearPlayer={() => this.props.clearPlayer(this.props.id)}
               clearPlayerDares={() => this.props.clearPlayerDares(this.props.id)}
@@ -94,7 +97,7 @@ class Player extends React.Component{
           </div>
         </div>
         <div class="row">
-          <div class="col">
+          <div class="col-10 offset-1">
             <form onSubmit={this.handleSubmit} onKeyDown={this.handleKeypress}>
               <input
                 type="text"
@@ -105,10 +108,13 @@ class Player extends React.Component{
               />
             </form>
           </div>
+          <div class="col" id="multiplier">
+            {this.state.multiplier}
+          </div>
         </div>
         <div class="row">
           <div class="col">
-            <Slider />
+            <input type="range" min="0" max="5" value={this.state.multiplier} onChange={this.handleSlide}/>
           </div>
         </div>
         <div class="row">
@@ -130,9 +136,14 @@ class DareList extends React.Component {
 
     //state variables
     this.state = {
-      players: [],
+      players: [{
+        id: 0,
+        name: "",
+        multiplier: 0,
+        dares: []
+      }],
       warningIsActive: false,
-      playerCounter: 0,
+      playerCounter: 1,
       dareCounter: 0,
     }
 
@@ -149,7 +160,7 @@ class DareList extends React.Component {
   clearPlayerDares(id){
     var players = this.state.players;
     for(var i=0; i<players.length; i++){
-      if(players[i].id == id){
+      if(players[i].id === id){
         players[i].dares = [];
       }
     }
@@ -161,11 +172,11 @@ class DareList extends React.Component {
   darePlayer(id){
     var players = this.state.players;
     for(var i=0; i<players.length; i++){
-      if(players[i].id == id){
+      if(players[i].id === id){
         players[i].dares = players[i].dares.concat({
           id: this.dareCounter,
           text: "A dare for " + players[i].name,
-          risk: 5
+          multiplier: 5
         });
       }
     }
@@ -178,7 +189,7 @@ class DareList extends React.Component {
   clearPlayer(id){
     var players = this.state.players;
     for(var i=0; i<players.length; i++){
-      if(players[i].id == id){
+      if(players[i].id === id){
         players.splice(i, 1);
       }
     }
@@ -217,7 +228,7 @@ class DareList extends React.Component {
     var players = this.state.players.concat({
       id: this.state.playerCounter,
       name: "",
-      risk: 0,
+      multiplier: 0,
       dares: []
     });
 
@@ -238,15 +249,20 @@ class DareList extends React.Component {
       players[i].dares = players[i].dares.concat({
         id: this.dareCounter,
         text: "lorum ispum dare text that will be randomized from a database.",
-        risk: 5
+        multiplier: 5
       });
 
       this.setState({
         players: players,
         dareCounter: this.dareCounter++
       });
-
     }
+  }
+
+  settings(){
+      this.setState({
+        players: []
+      });
   }
 
   render() {
@@ -289,6 +305,13 @@ class DareList extends React.Component {
             </div>
             <div class="row">
               <div class="col">
+                <button title="Settings" class="hamburger" onClick={this.settings}>
+                  <FontAwesomeIcon icon={faCog} size="2x" />
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
               {this.state.warningIsActive ?
                 <div class="hamburger alert alert-warning">
                   You are about to remove all players.
@@ -304,7 +327,7 @@ class DareList extends React.Component {
                   <Player
                     id={player.id}
                     name={player.name}
-                    risk={player.risk}
+                    multiplier={player.multiplier}
                     dares={player.dares}
                     clearPlayer={this.clearPlayer}
                     clearPlayerDares={this.clearPlayerDares}

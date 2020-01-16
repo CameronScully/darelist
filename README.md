@@ -1,8 +1,8 @@
 <h1>darelist</h1>
 A browser game for allocating dares.
-###todo
-- [] Webpack for sepperate files
-- [] MongoDB database
+### todo
+- [ ] Webpack for sepperate files
+- [ ] MongoDB database
 <ul>
   <li>
     Writen in react.

@@ -17,6 +17,7 @@ import { faCrosshairs } from '@fortawesome/free-solid-svg-icons'
 import { faDice } from '@fortawesome/free-solid-svg-icons'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
+import { faDiceOne } from '@fortawesome/free-solid-svg-icons'
 
 class Dare extends React.Component{
   render(){
@@ -129,7 +130,7 @@ class Player extends React.Component{
   }
 }
 
-class DareList extends React.Component {
+class Game extends React.Component {
 
   constructor(props){
     super(props);
@@ -259,20 +260,13 @@ class DareList extends React.Component {
     }
   }
 
-  settings(){
-      this.setState({
-        players: []
-      });
+  loadPage(name){
+
   }
 
   render() {
     return(
       <div class="container-fluid" align="center">
-        <div class="row" id="banner">
-          <div class="col">
-            <h1>darelist</h1>
-          </div>
-        </div>
         <div class="row">
           <div class="col-2">
             <div class="row">
@@ -343,7 +337,26 @@ class DareList extends React.Component {
   }
 }
 
+class Darelist extends React.Component {
+  render(){
+    return(
+      <div class="container-fluid" align="center">
+        <div class="row" id="banner">
+          <div class="col">
+            <h1>darelist</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <Game />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
 ReactDOM.render(
-  <DareList />,
+  <Darelist />,
   document.getElementById('root')
 );

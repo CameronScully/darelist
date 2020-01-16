@@ -1,32 +1,19 @@
-<h1>darelist</h1>
+# darelist
 A browser game for allocating dares.
-<ul>
-  <li>
-    Writen in react.
-  </li>
-  <li>
-    Uses font awesome icons.
-  </li>
-  <li>
-    Uses react bootstrap.
-  </li>
-  <li>
-    Facebook colours
-  </li>
-</ul>
+## todo
+- [ ] Webpack for sepperate files
+- [ ] MongoDB database
 
-<h2>Installation</h2>
-<ul>
-  <li>
-    https://nodejs.org/en/
-  </li>
-  <li>
-    npm install react-bootstrap bootstrap
-  </li>
-  <li>
-    npm i --save @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
-  </li>
-</ul>
+## about
+- Writen in react
+- Uses font awesome icons.
+- Uses react bootstrap.
+- Facebook colours
 
-<h2>Development enviroment</h2>
+## Installation
+- https://nodejs.org/en/
+- npm install react-bootstrap bootstrap
+- npm i --save @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+
+## Development enviroment
 To run the app navigate to the darelist folder and execute 'npm start' from terminal. The web app can be accessed at local host in the browser but should open automatically.

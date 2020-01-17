@@ -37,6 +37,14 @@ class Game extends Component {
     this.clearPlayers = this.clearPlayers.bind(this);
     this.clearPlayerDares = this.clearPlayerDares.bind(this);
     this.darePlayer = this.darePlayer.bind(this);
+    this.updatePlayers = this.updatePlayers.bind(this);
+  }
+
+  updatePlayers(){
+    this.props.updatePlayers(this.state.players,
+      this.state.playerCounter,
+      this.state.dareCounter
+    );
   }
 
   clearPlayerDares(id){
@@ -49,6 +57,8 @@ class Game extends Component {
     this.setState({
       players: players,
     });
+
+    this.updatePlayers();
   }
 
   darePlayer(id){
@@ -66,6 +76,8 @@ class Game extends Component {
     this.setState({
       players: players,
     });
+
+    this.updatePlayers();
   }
 
   clearPlayer(id){
@@ -78,6 +90,8 @@ class Game extends Component {
     this.setState({
       players: players,
     });
+
+    this.updatePlayers();
   }
 
   clearPlayers() {
@@ -92,6 +106,8 @@ class Game extends Component {
         warningIsActive: !this.state.warningIsActive
       });
     }
+
+    this.updatePlayers();
   }
 
   clearDares() {
@@ -104,6 +120,8 @@ class Game extends Component {
         players: players
       });
     }
+
+    this.updatePlayers();
   }
 
   addPlayer(){
@@ -119,7 +137,7 @@ class Game extends Component {
       playerCounter: this.state.playerCounter + 1
     });
 
-    console.log(this.state.players);
+    this.updatePlayers();
   }
 
   dareAll(){
@@ -139,10 +157,8 @@ class Game extends Component {
         dareCounter: this.dareCounter++
       });
     }
-  }
 
-  loadPage(name){
-
+    this.updatePlayers();
   }
 
   render() {
@@ -173,14 +189,16 @@ class Game extends Component {
             </div>
             <div class="row">
               <div class="col">
-                <button title="Clear Players" class="hamburger" onClick={this.clearPlayers} onBlur={() => this.setState({warningIsActive: false})}>
+                <button title="Clear Players" class="hamburger"
+                  onClick={this.clearPlayers}
+                  onBlur={() => this.setState({warningIsActive: false})}>
                   <FontAwesomeIcon icon="trash-alt" size="2x" />
                 </button>
               </div>
             </div>
             <div class="row">
               <div class="col">
-                <button title="Settings" class="hamburger" onClick={this.settings}>
+                <button title="Settings" class="hamburger" onClick={() => this.props.go("settings")}>
                   <FontAwesomeIcon icon="cog" size="2x" />
                 </button>
               </div>
@@ -196,7 +214,7 @@ class Game extends Component {
             </div>
           </div>
           <div class="col-8">
-            {this.state.players.map((player) => (
+            {this.props.players.map((player) => (
               <div class="row" key={player.id}>
                 <div class="col">
                   <Player

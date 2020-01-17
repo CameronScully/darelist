@@ -10,7 +10,7 @@ class Username extends Component{
     super(props);
 
     this.state = {
-      value: ""
+      value: this.props.value
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,6 +23,7 @@ class Username extends Component{
   }
 
   handleSubmit(event){
+    this.props.handleSubmit(event);
     event.preventDefault();
   }
 
@@ -42,6 +43,7 @@ class Username extends Component{
           id="username"
           value={this.state.value}
           onChange={this.handleChange}
+          onBlur={this.handleSubmit}
         />
       </form>
     );

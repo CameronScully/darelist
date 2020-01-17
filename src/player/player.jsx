@@ -22,12 +22,17 @@ class Player extends Component{
     };
 
     this.handleSlide = this.handleSlide.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSlide(event){
     this.setState({
       multiplier: event.target.value
     })
+  }
+
+  handleSubmit(event){
+    this.props.handleSubmit(event.target.value, this.props.id);
   }
 
   render(){
@@ -48,7 +53,7 @@ class Player extends Component{
         </div>
         <div class="row">
           <div class="col-10 offset-1">
-            <Username />
+            <Username value={this.props.name} handleSubmit={this.handleSubmit}/>
           </div>
           <div class="col" id="multiplier">
             {this.state.multiplier}

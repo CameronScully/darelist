@@ -29,18 +29,40 @@ class Darelist extends Component {
       }],
       playerCounter: 1,
       dareCounter: 0,
-      warningIsActive: false
+      warningIsActive: false,
+      history: [],
+      page: "game"
     }
 
     this.addPlayer = this.addPlayer.bind(this);
     this.darePlayers = this.darePlayers.bind(this);
     this.clearDares = this.clearDares.bind(this);
     this.deletePlayers = this.deletePlayers.bind(this);
-    this.settings = this.addPlayer.bind(this);
+
+    this.go = this.go.bind(this);
 
     this.deletePlayer = this.deletePlayer.bind(this);
     this.clearPlayerDares = this.clearPlayerDares.bind(this);
     this.darePlayer = this.darePlayer.bind(this);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  go(page){
+    if(page === "settings"){
+      this.setState({
+        history: this.state.players,
+        players: [],
+        page: page
+      });
+    }
+
+    if(page === "game"){
+      this.setState({
+        players: this.state.history,
+        page: page
+      });
+    }
   }
 
   addPlayer(){
@@ -144,6 +166,20 @@ class Darelist extends Component {
     });
   }
 
+  handleSubmit(name, id){
+    console.log(id);
+    var players = this.state.players;
+    for(var i=0; i<players.length; i++){
+      if(players[i].id === id){
+        players[i].name = name;
+      }
+    }
+
+    this.setState({
+      players: players,
+    });
+  }
+
   render(){
     return(
       <div class="container-fluid" align="center">
@@ -157,7 +193,10 @@ class Darelist extends Component {
         </div>
         <div class="row">
           <div class="col-2">
-            <Controls warningIsActive={this.state.warningIsActive}>
+            <Controls
+              warningIsActive={this.state.warningIsActive}
+              active={this.state.page === "game"}
+              return={() => this.go("game")}>
               <AddPlayer onClick={this.addPlayer}/>
               <DarePlayers onClick={this.darePlayers} />
               <ClearDares onClick={(this.clearDares)} />
@@ -166,7 +205,7 @@ class Darelist extends Component {
                   warningIsActive: false
                 })}
               />
-              <Settings onClick={this.settings} />
+            <Settings onClick={() => this.go("settings")} />
             </Controls>
           </div>
           <div class="col-8">
@@ -181,6 +220,7 @@ class Darelist extends Component {
                     deletePlayer={this.deletePlayer}
                     clearPlayerDares={this.clearPlayerDares}
                     darePlayer={this.darePlayer}
+                    handleSubmit={this.handleSubmit}
                   />
                 </div>
               </div>

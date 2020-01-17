@@ -9,7 +9,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //components
 import Banner from "./../game/banner.jsx";
 import Controls from "./../game/controls.jsx";
-import Players from "./../player/players.jsx";
+import AddPlayer from "./../game/add-player.jsx";
+import DarePlayers from "./../game/dare-players.jsx";
+import ClearDares from "./../game/clear-dares.jsx";
+import DeletePlayers from "./../game/delete-players.jsx";
+import Settings from "./../game/settings.jsx";
+import Player from "./../player/player.jsx"
 
 class Darelist extends Component {
   constructor(props){
@@ -23,8 +28,120 @@ class Darelist extends Component {
         dares: []
       }],
       playerCounter: 1,
-      dareCounter: 0
+      dareCounter: 0,
+      warningIsActive: false
     }
+
+    this.addPlayer = this.addPlayer.bind(this);
+    this.darePlayers = this.darePlayers.bind(this);
+    this.clearDares = this.clearDares.bind(this);
+    this.deletePlayers = this.deletePlayers.bind(this);
+    this.settings = this.addPlayer.bind(this);
+
+    this.deletePlayer = this.deletePlayer.bind(this);
+    this.clearPlayerDares = this.clearPlayerDares.bind(this);
+    this.darePlayer = this.darePlayer.bind(this);
+  }
+
+  addPlayer(){
+    var players = this.state.players.concat(
+      {
+        id: this.state.playerCounter,
+        name: "",
+        multiplier: 0,
+        dares: []
+      }
+    );
+
+    this.setState({
+      players: players,
+      playerCounter: this.state.playerCounter+1
+    });
+  }
+
+  darePlayers(){
+    for(var i=0; i<this.state.players.length; i++){
+      //pick random dares
+
+      //allocate dares
+      var players = this.state.players;
+      players[i].dares = players[i].dares.concat({
+        id: this.dareCounter,
+        text: "lorum ispum dare text that will be randomized from a database.",
+        multiplier: 5
+      });
+
+      this.setState({
+        players: players,
+        dareCounter: this.dareCounter++
+      });
+    }
+  }
+
+  clearDares() {
+    var players = this.state.players;
+    for(var i=0; i<this.state.players.length; i++){
+      players[i].dares = [];
+    }
+
+    this.setState({
+      players: players
+    });
+  }
+
+  deletePlayers() {
+    if(this.state.warningIsActive){
+      var players = [];
+      this.setState({
+        players: players,
+        warningIsActive: !this.state.warningIsActive
+      });
+    } else {
+      this.setState({
+        warningIsActive: !this.state.warningIsActive
+      });
+    }
+  }
+
+  clearPlayerDares(id){
+    var players = this.state.players;
+    for(var i=0; i<players.length; i++){
+      if(players[i].id === id){
+        players[i].dares = [];
+      }
+    }
+    this.setState({
+      players: players,
+    });
+  }
+
+  darePlayer(id){
+    var players = this.state.players;
+    for(var i=0; i<players.length; i++){
+      if(players[i].id === id){
+        players[i].dares = players[i].dares.concat({
+          id: this.dareCounter,
+          text: "A dare for " + players[i].name,
+          multiplier: 5
+        });
+      }
+    }
+
+    this.setState({
+      players: players,
+    });
+  }
+
+  deletePlayer(id){
+    var players = this.state.players;
+    for(var i=0; i<players.length; i++){
+      if(players[i].id === id){
+        players.splice(i, 1);
+      }
+    }
+    this.setState({
+      players: players,
+    });
   }
 
   render(){
@@ -33,14 +150,41 @@ class Darelist extends Component {
         <div class="row" id="banner">
           <div class="col">
             <Banner />
+            <button onClick={() => console.log(this.state.players)}>
+              DEBUG
+            </button>
           </div>
         </div>
         <div class="row">
           <div class="col-2">
-            <Controls />
+            <Controls warningIsActive={this.state.warningIsActive}>
+              <AddPlayer onClick={this.addPlayer}/>
+              <DarePlayers onClick={this.darePlayers} />
+              <ClearDares onClick={(this.clearDares)} />
+              <DeletePlayers onClick={this.deletePlayers}
+                onBlur={() => this.setState({
+                  warningIsActive: false
+                })}
+              />
+              <Settings onClick={this.settings} />
+            </Controls>
           </div>
           <div class="col-8">
-            <Players players={this.state.players}/>
+            {this.state.players.map((player) => (
+              <div class="row" key={player.id}>
+                <div class="col">
+                  <Player
+                    id={player.id}
+                    name={player.name}
+                    multiplier={player.multiplier}
+                    dares={player.dares}
+                    deletePlayer={this.deletePlayer}
+                    clearPlayerDares={this.clearPlayerDares}
+                    darePlayer={this.darePlayer}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

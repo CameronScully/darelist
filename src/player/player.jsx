@@ -6,7 +6,10 @@ import './../index.css';
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import PlayerControls from "./../player/player-controls.jsx";
+//font awesome icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+//components
 import Dares from "./dares.jsx";
 import Username from "./username.jsx";
 
@@ -32,7 +35,15 @@ class Player extends Component{
       <div class="container shadow" id="player">
         <div class="row">
           <div class="col-10 offset-2" align="right">
-            <PlayerControls />
+            <button onClick={() => this.props.darePlayer(this.props.id)}>
+              <FontAwesomeIcon icon="dice"/>
+            </button>
+            <button onClick={() => this.props.clearPlayerDares(this.props.id)}>
+              <FontAwesomeIcon icon="sync-alt"/>
+            </button>
+            <button onClick={() => this.props.deletePlayer(this.props.id)}>
+              <FontAwesomeIcon icon="trash-alt"/>
+            </button>
           </div>
         </div>
         <div class="row">

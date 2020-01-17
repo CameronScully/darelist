@@ -6,40 +6,24 @@ import './../index.css';
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//components
-import AddPlayer from "./add-player.jsx";
-import DarePlayers from "./dare-players.jsx";
-import ResetDares from "./reset-players.jsx";
-import DeletePlayers from "./delete-players.jsx";
-import Settings from "./settings.jsx";
-
 class Controls extends Component{
   render(){
     return(
       <div class="container">
-        <div class="row">
-          <div class="col">
-            <AddPlayer />
+        {this.props.children.map((control, index) => (
+          <div class="row" key={index}>
+            <div class="col">
+              {control}
+            </div>
           </div>
-        </div>
+        ))}
         <div class="row">
           <div class="col">
-            <DarePlayers />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <ResetDares />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <DeletePlayers />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <Settings />
+            {this.props.warningIsActive ?
+              <div class="hamburger alert alert-warning">
+                You are about to remove all players.
+              </div> : ""
+            }
           </div>
         </div>
       </div>

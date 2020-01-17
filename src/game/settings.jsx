@@ -10,8 +10,7 @@ class Settings extends Component {
   render(){
     return(
       <div>
-        settings page
-        <button title="Settings" class="hamburger" onClick={() => this.props.go("game")}>
+        <button title="Settings" class="hamburger" onClick={this.props.onClick}>
           <FontAwesomeIcon icon="cog" size="2x" />
         </button>
       </div>

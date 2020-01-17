@@ -14,7 +14,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class DeletePlayers extends Component{
   render(){
     return(
-      <button title="Clear Players" class="hamburger">
+      <button title="Clear Players" class="hamburger"
+        onClick={this.props.onClick}
+        onBlur={this.props.onBlur}>
         <FontAwesomeIcon icon="trash-alt" size="2x" />
       </button>
     );

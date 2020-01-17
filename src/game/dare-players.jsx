@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class DarePlayers extends Component{
   render(){
     return(
-      <button title="Dare all" class="hamburger">
+      <button title="Dare all" class="hamburger" onClick={this.props.onClick}>
         <FontAwesomeIcon icon="dice" size="2x" />
       </button>
     );

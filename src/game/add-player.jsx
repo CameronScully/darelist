@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class AddPlayer extends Component{
   render(){
     return(
-      <button title="Add player" class="hamburger">
+      <button title="Add player" class="hamburger" onClick={this.props.onClick}>
         <FontAwesomeIcon icon="plus-circle" size="2x" />
       </button>
     );

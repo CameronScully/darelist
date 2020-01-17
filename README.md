@@ -1,7 +1,7 @@
 # darelist
 A browser game for allocating dares.
 ## todo
-- [ ] Webpack for sepperate files
+- [x] Organise Project
 - [ ] MongoDB database
 
 ## about

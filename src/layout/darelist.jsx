@@ -15,6 +15,8 @@ import ClearDares from "./../game/clear-dares.jsx";
 import DeletePlayers from "./../game/delete-players.jsx";
 import Settings from "./../game/settings.jsx";
 import Player from "./../player/player.jsx"
+import SettingsPage from "./settings-page";
+import GamePage from "./game-page.jsx";
 
 class Darelist extends Component {
   constructor(props){
@@ -209,22 +211,13 @@ class Darelist extends Component {
             </Controls>
           </div>
           <div class="col-8">
-            {this.state.players.map((player) => (
-              <div class="row" key={player.id}>
-                <div class="col">
-                  <Player
-                    id={player.id}
-                    name={player.name}
-                    multiplier={player.multiplier}
-                    dares={player.dares}
-                    deletePlayer={this.deletePlayer}
-                    clearPlayerDares={this.clearPlayerDares}
-                    darePlayer={this.darePlayer}
-                    handleSubmit={this.handleSubmit}
-                  />
-                </div>
-              </div>
-            ))}
+            <GamePage players={this.state.players}
+              active={this.state.page==="game"}
+              deletePlayer={this.deletePlayer}
+              clearPlayerDares={this.clearPlayerDares}
+              darePlayer={this.darePlayer}
+              handleSubmit={this.handleSubmit}/>
+            <SettingsPage active={this.state.page==="settings"} />
           </div>
         </div>
       </div>

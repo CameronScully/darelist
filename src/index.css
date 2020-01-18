@@ -18,6 +18,10 @@
   background: transparent;
 }
 
+.dareInput {
+  background-color: white;
+}
+
 #multiplier {
   font-size: 40px;
   font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
@@ -49,6 +53,12 @@
 
 h1 {
   color: white;
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+
+}
+
+h1 {
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 }
 
 .hamburger {

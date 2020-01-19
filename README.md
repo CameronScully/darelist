@@ -1,8 +1,9 @@
 # darelist
 A browser game for allocating dares.
 ## todo
-- [ ] Webpack for sepperate files
-- [ ] MongoDB database
+- [x] MongoDB database
+- [ ] Database requests from react app
+- [ ] Website accessability from external networks
 
 ## about
 - Writen in react

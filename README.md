@@ -18,6 +18,7 @@ A browser game for allocating dares.
 - npm i express
 - npm i mongoose
 - npm i body-parser
+- npm i concurrently
 
 ## Development enviroment
 To run the app navigate to the darelist folder and execute 'npm start' from terminal. The web app can be accessed at local host in the browser but should open automatically.

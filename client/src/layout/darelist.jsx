@@ -3,14 +3,6 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import './../index.css';
 
-//redux
-import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
-import { getDares } from '../actions/dareActions';
-import store from '../store.js';
-
-import PropTypes from 'prop-types'
-
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -197,56 +189,45 @@ class Darelist extends Component {
 
   render(){
     return(
-      <Provider store={store}>
-        <div class="container-fluid" align="center">
-          <div class="row" id="banner">
-            <div class="col">
-              <Banner />
-              <button onClick={() => console.log(this.state.players)}>
-                DEBUG
-              </button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-2">
-              <Controls
-                warningIsActive={this.state.warningIsActive}
-                active={this.state.page === "game"}
-                return={() => this.go("game")}>
-                <AddPlayer onClick={this.addPlayer}/>
-                <DarePlayers onClick={this.darePlayers} />
-                <ClearDares onClick={(this.clearDares)} />
-                <DeletePlayers onClick={this.deletePlayers}
-                  onBlur={() => this.setState({
-                    warningIsActive: false
-                  })}
-                />
-              <Settings onClick={() => this.go("settings")} />
-              </Controls>
-            </div>
-            <div class="col-8">
-              <GamePage players={this.state.players}
-                active={this.state.page==="game"}
-                deletePlayer={this.deletePlayer}
-                clearPlayerDares={this.clearPlayerDares}
-                darePlayer={this.darePlayer}
-                handleSubmit={this.handleSubmit}/>
-              <SettingsPage active={this.state.page==="settings"} />
-            </div>
+      <div class="container-fluid" align="center">
+        <div class="row" id="banner">
+          <div class="col">
+            <Banner />
+            <button onClick={() => console.log(this.state.players)}>
+              DEBUG
+            </button>
           </div>
         </div>
-      </Provider>
+        <div class="row">
+          <div class="col-2">
+            <Controls
+              warningIsActive={this.state.warningIsActive}
+              active={this.state.page === "game"}
+              return={() => this.go("game")}>
+              <AddPlayer onClick={this.addPlayer}/>
+              <DarePlayers onClick={this.darePlayers} />
+              <ClearDares onClick={(this.clearDares)} />
+              <DeletePlayers onClick={this.deletePlayers}
+                onBlur={() => this.setState({
+                  warningIsActive: false
+                })}
+              />
+            <Settings onClick={() => this.go("settings")} />
+            </Controls>
+          </div>
+          <div class="col-8">
+            <GamePage players={this.state.players}
+              active={this.state.page==="game"}
+              deletePlayer={this.deletePlayer}
+              clearPlayerDares={this.clearPlayerDares}
+              darePlayer={this.darePlayer}
+              handleSubmit={this.handleSubmit}/>
+            <SettingsPage active={this.state.page==="settings"} />
+          </div>
+        </div>
+      </div>
     );
   }
 }
 
-Darelist.propTypes = {
-  getDares: PropTypes.func.isRequired,
-  dare: PropTypes.object.isRequired
-}
-
-const mapStateToProps = (state) => ({
-  dare: state.dare
-});
-
-export default connect(mapStateToProps, { getDares })(Darelist);
+export default Darelist;

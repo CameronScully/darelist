@@ -1,7 +1,7 @@
-import { GET_DARES, DELETE_DARE, UPDATE_DARE } from './types.js';
+import { GET_DARES } from './types';
 
 export const getDares = () => {
   return {
     type: GET_DARES
   };
-}
+};

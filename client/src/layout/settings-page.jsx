@@ -2,24 +2,42 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import './../index.css';
+import PropTypes from 'prop-types';
+
+//redux
+import { connect } from 'react-redux'
+import { getDares } from '../actions/dareActions'
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//components
-
 class SettingsPage extends Component{
+
+  componentDidMount() {
+    this.props.getDares();
+  }
+
   render(){
+    const { dares } = this.props.dare;
     return(
       <div>
-        {this.props.active ?
+        {dares.map((dare) => (
           <div>
-
-          </div> : ""
-        }
+            {dare.text}
+          </div>
+        ))}
       </div>
     );
   }
 }
 
-export default SettingsPage;
+SettingsPage.propTypes = {
+  getDares: PropTypes.func.isRequired,
+  dare: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  dare: state.dare
+});
+
+export default connect(mapStateToProps, { getDares })(SettingsPage);

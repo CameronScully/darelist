@@ -1,9 +1,9 @@
-import { GET_DARES, DELETE_DARE, UPDATE_DARE } from '../actions/types.js';
+import { GET_DARES } from '../actions/types.js';
 
 const initialState = {
-  dares: [{
-    text: "do a backflip"
-  }],
+  dares: [
+    { text: "test dare" }
+  ]
 }
 
 export default function(state = initialState, action) {

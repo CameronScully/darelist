@@ -2,6 +2,11 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import './../index.css';
+import PropTypes from 'prop-types';
+
+//redux
+import { connect } from 'react-redux'
+import { getPlayers } from '../actions/playerActions'
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,12 +15,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Player from "./../player/player.jsx"
 
 class GamePage extends Component{
+
+  componentDidMount(){
+    this.props.getPlayers();
+  }
+
   render(){
     return(
       <div>
-        {this.props.active ?
           <div>
-            {this.props.players.map((player) => (
+            {this.props.player.players.map((player) => (
               <div class="row" key={player.id}>
                 <div class="col">
                   <Player
@@ -31,11 +40,19 @@ class GamePage extends Component{
                 </div>
               </div>
             ))}
-          </div> : ""
-        }
+          </div>
       </div>
     );
   }
 }
 
-export default GamePage;
+GamePage.propTypes = {
+  getPlayers: PropTypes.func.isRequired,
+  player: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  player: state.player
+});
+
+export default connect(mapStateToProps, { getPlayers })(GamePage);

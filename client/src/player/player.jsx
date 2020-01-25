@@ -2,6 +2,11 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import './../index.css';
+import PropTypes from 'prop-types';
+
+//redux
+import { connect } from 'react-redux'
+import { getPlayers } from '../actions/playerActions'
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,12 +22,12 @@ class Player extends Component{
   constructor(props){
     super(props);
 
-    this.state = {
-      multiplier: this.props.multiplier
-    };
-
     this.handleSlide = this.handleSlide.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.getPlayers();
   }
 
   handleSlide(event){
@@ -53,15 +58,15 @@ class Player extends Component{
         </div>
         <div class="row">
           <div class="col-10 offset-1">
-            <Username value={this.props.name} handleSubmit={this.handleSubmit}/>
+            <Username value={this.props.name} playerID={this.props.id}/>
           </div>
           <div class="col" id="multiplier">
-            {this.state.multiplier}
+            {this.props.multiplier}
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <input type="range" min="0" max="5" value={this.state.multiplier}
+            <input type="range" min="0" max="5" value={this.props.multiplier}
               onChange={this.handleSlide}/>
           </div>
         </div>
@@ -75,4 +80,13 @@ class Player extends Component{
   }
 }
 
-export default Player;
+Player.propTypes = {
+  getPlayers: PropTypes.func.isRequired,
+  player: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  player: state.player
+});
+
+export default connect(mapStateToProps, { getPlayers })(Player);

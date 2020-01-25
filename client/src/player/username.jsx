@@ -2,6 +2,11 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import './../index.css';
+import PropTypes from 'prop-types';
+
+//redux
+import { connect } from 'react-redux'
+import { updateUsername } from '../actions/playerActions'
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,14 +28,13 @@ class Username extends Component{
   }
 
   handleSubmit(event){
-    this.props.handleSubmit(event);
     event.preventDefault();
+    this.props.updateUsername(this.state.value, this.props.playerID);
   }
 
   handleKeypress(event){
     if(event.key === "Enter"){
       event.target.blur();
-      this.handleSubmit(event);
     }
   }
 
@@ -50,4 +54,13 @@ class Username extends Component{
   }
 }
 
-export default Username;
+Username.propTypes = {
+  updateUsername: PropTypes.func,
+  value: PropTypes.string
+}
+
+const mapStateToProps = (state) => ({
+  controls: state.controls
+});
+
+export default connect(mapStateToProps, { updateUsername })(Username);

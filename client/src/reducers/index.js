@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import dareReducer from './dareReducer';
+import playerReducer from './playerReducer';
+import controlsReducer from './controlsReducer';
 
 export default combineReducers({
-  dare: dareReducer
+  player: playerReducer,
+  controls: controlsReducer
 });

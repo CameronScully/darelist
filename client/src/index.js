@@ -10,7 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 //redux
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import store from "./store.js";
 
@@ -26,7 +25,7 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 //components
-import SettingsPage from "./layout/settings-page.jsx"
+import Darelist from "./layout/darelist"
 
 //build font awesome library
 library.add(
@@ -41,13 +40,9 @@ library.add(
   faArrowLeft
 );
 
-const App = () => (
-  <Provider store={store}>
-    <SettingsPage />
-  </Provider>
-)
-
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <Darelist />
+  </ Provider>,
   document.getElementById('root')
 );

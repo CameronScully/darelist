@@ -4,7 +4,8 @@ import {
   DELETE_PLAYERS,
   DARE_PLAYERS,
   RESET_PLAYERS,
-  UPDATE_USERNAME
+  UPDATE_USERNAME,
+  DARE_PLAYER
  } from '../actions/types.js';
 
 const initialState = {
@@ -75,6 +76,23 @@ export default function(state = initialState, action) {
               name: action.payload.value,
               multiplier: player.multiplier,
               dares: player.dares
+            }
+            return newPlayer;
+          } else {
+            return player;
+          }
+        })
+      };
+    case DARE_PLAYER:
+      return {
+        ...state,
+        players: state.players.map((player) => {
+          if(player.id == action.payload){
+            const newPlayer = {
+              id: player.id,
+              name: player.name,
+              multiplier: player.multiplier,
+              dares: [...player.dares, {text: "A dare for " + player.name}]
             }
             return newPlayer;
           } else {

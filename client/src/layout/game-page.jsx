@@ -32,10 +32,6 @@ class GamePage extends Component{
                     name={player.name}
                     multiplier={player.multiplier}
                     dares={player.dares}
-                    deletePlayer={this.props.deletePlayer}
-                    clearPlayerDares={this.props.clearPlayerDares}
-                    darePlayer={this.props.darePlayer}
-                    handleSubmit={this.props.handleSubmit}
                   />
                 </div>
               </div>

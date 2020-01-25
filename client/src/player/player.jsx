@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 //redux
 import { connect } from 'react-redux'
-import { getPlayers } from '../actions/playerActions'
+import { darePlayer } from '../actions/playerActions'
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,10 +24,6 @@ class Player extends Component{
 
     this.handleSlide = this.handleSlide.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount(){
-    this.props.getPlayers();
   }
 
   handleSlide(event){
@@ -81,12 +77,11 @@ class Player extends Component{
 }
 
 Player.propTypes = {
-  getPlayers: PropTypes.func.isRequired,
-  player: PropTypes.object.isRequired
+  darePlayer: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
   player: state.player
 });
 
-export default connect(mapStateToProps, { getPlayers })(Player);
+export default connect(mapStateToProps, { darePlayer })(Player);

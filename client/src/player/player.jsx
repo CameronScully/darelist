@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 //redux
 import { connect } from 'react-redux'
-import { darePlayer } from '../actions/playerActions'
+import { darePlayer, resetPlayer, deletePlayer } from '../actions/playerActions'
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -38,13 +38,13 @@ class Player extends Component{
 
   render(){
     return(
-      <div class="container shadow" id="player">
+      <div class="container panel shadow">
         <div class="row">
           <div class="col-10 offset-2" align="right">
             <button onClick={() => this.props.darePlayer(this.props.id)}>
               <FontAwesomeIcon icon="dice"/>
             </button>
-            <button onClick={() => this.props.clearPlayerDares(this.props.id)}>
+            <button onClick={() => this.props.resetPlayer(this.props.id)}>
               <FontAwesomeIcon icon="sync-alt"/>
             </button>
             <button onClick={() => this.props.deletePlayer(this.props.id)}>
@@ -77,11 +77,16 @@ class Player extends Component{
 }
 
 Player.propTypes = {
-  darePlayer: PropTypes.func.isRequired
+  darePlayer: PropTypes.func.isRequired,
+  resetPlayer: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
   player: state.player
 });
 
-export default connect(mapStateToProps, { darePlayer })(Player);
+export default connect(mapStateToProps, {
+  darePlayer,
+  resetPlayer,
+  deletePlayer
+})(Player);

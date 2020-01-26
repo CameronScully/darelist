@@ -5,7 +5,9 @@ import {
   DARE_PLAYERS,
   RESET_PLAYERS,
   UPDATE_USERNAME,
-  DARE_PLAYER
+  DARE_PLAYER,
+  RESET_PLAYER,
+  DELETE_PLAYER
  } from '../actions/types.js';
 
 const initialState = {
@@ -48,7 +50,7 @@ export default function(state = initialState, action) {
             id: player.id,
             name: player.name,
             multiplier: player.multiplier,
-            dares: player.dares.concat({text: "new dare"})
+            dares: player.dares.concat({text: "a dare for everyone"})
           }
           return newPlayer;
         })
@@ -99,6 +101,28 @@ export default function(state = initialState, action) {
             return player;
           }
         })
+      };
+    case RESET_PLAYER:
+      return {
+        ...state,
+        players: state.players.map((player) => {
+          if(player.id == action.payload){
+            const newPlayer = {
+              id: player.id,
+              name: player.name,
+              multiplier: player.multiplier,
+              dares: []
+            }
+            return newPlayer;
+          } else {
+            return player;
+          }
+        })
+      };
+    case DELETE_PLAYER:
+      return {
+        ...state,
+        players: state.players.filter(player => player.id != action.payload)
       };
     default:
       return state;

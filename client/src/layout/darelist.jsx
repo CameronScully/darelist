@@ -12,7 +12,7 @@ import { addPlayer, deletePlayers } from '../actions/playerActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //components
-import Controls from "../game/controls.jsx";
+import Controls from "./controls.jsx";
 import Banner from "../game/banner.jsx";
 import Settings from "../game/settings.jsx";
 import Player from "../player/player.jsx"
@@ -21,6 +21,19 @@ import GamePage from "./game-page.jsx";
 
 class Darelist extends Component {
   render(){
+    const page = this.props.navigation.page;
+    let display;
+    switch(page){
+      case "game":
+        display = <GamePage />;
+        break;
+      case "settings":
+        display = <SettingsPage />;
+        break;
+      default:
+        display = <GamePage />;
+    }
+
     return(
       <div class="container-fluid" align="center">
         <div class="row" id="banner">
@@ -29,15 +42,8 @@ class Darelist extends Component {
           </div>
         </div>
         <div class="row">
-          <div class="col-2">
-            <Controls />
-          </div>
-          <div class="col-8">
-            <GamePage
-              deletePlayer={this.deletePlayer}
-              clearPlayerDares={this.clearPlayerDares}
-              darePlayer={this.darePlayer}
-              handleSubmit={this.handleSubmit} />
+          <div class="col">
+            {display}
           </div>
         </div>
       </div>
@@ -46,11 +52,11 @@ class Darelist extends Component {
 }
 
 Darelist.propTypes = {
-  addPlayer: PropTypes.func.isRequired
+  get: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  player: state.player
+  navigation: state.navigation
 });
 
 export default connect(mapStateToProps, { addPlayer })(Darelist);

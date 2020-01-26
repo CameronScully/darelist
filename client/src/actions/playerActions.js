@@ -3,7 +3,9 @@ import {
   ADD_PLAYER,
   DELETE_PLAYERS,
   UPDATE_USERNAME,
-  DARE_PLAYER
+  DARE_PLAYER,
+  RESET_PLAYER,
+  DELETE_PLAYER
 } from './types';
 
 export const getPlayers = () => {
@@ -34,6 +36,20 @@ export const updateUsername = (value, id) => {
 export const darePlayer = (id) => {
   return {
     type: DARE_PLAYER,
+    payload: id
+  };
+};
+
+export const resetPlayer = (id) => {
+  return {
+    type: RESET_PLAYER,
+    payload: id
+  };
+};
+
+export const deletePlayer = (id) => {
+  return {
+    type: DELETE_PLAYER,
     payload: id
   };
 };

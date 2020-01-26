@@ -12,7 +12,13 @@ import { getPlayers } from '../actions/playerActions'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //components
-import Player from "./../player/player.jsx"
+import Player from "../player/player.jsx"
+import Controls from "./controls.jsx"
+import AddPlayer from "../game/add-player.jsx";
+import DarePlayers from "../game/dare-players.jsx";
+import ClearDares from "../game/clear-dares.jsx";
+import DeletePlayers from "../game/delete-players.jsx";
+import Settings from "../game/settings.jsx";
 
 class GamePage extends Component{
 
@@ -22,8 +28,18 @@ class GamePage extends Component{
 
   render(){
     return(
-      <div>
-          <div>
+      <div class="container-fluid" align="center">
+        <div class="row">
+          <div class="col-2">
+            <Controls>
+              <AddPlayer />
+              <DarePlayers />
+              <ClearDares />
+              <DeletePlayers />
+              <Settings />
+            </Controls>
+          </div>
+          <div class="col-8">
             {this.props.player.players.map((player) => (
               <div class="row" key={player.id}>
                 <div class="col">
@@ -37,6 +53,7 @@ class GamePage extends Component{
               </div>
             ))}
           </div>
+        </div>
       </div>
     );
   }

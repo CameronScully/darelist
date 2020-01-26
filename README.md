@@ -3,11 +3,10 @@ A browser game for allocating dares.
 ## todo
 - [x] MongoDB database
 - [x] Database requests from react app
-- [ ] Redux
+- [x] Redux
 - [ ] Add, edit, delete dares from settings page
 - [ ] Random allocation of dares from database to players
 - [ ] Metric for adjusting randomness accordingly to play risk and number of occurances
-- [ ] Website accessability from external networks
 
 ## about
 - Writen in react

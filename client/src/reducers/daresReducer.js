@@ -7,7 +7,6 @@ import {
 
 const initialState = {
   dares: [],
-  dareCounter: 0,
   loading: false
 }
 
@@ -16,8 +15,7 @@ export default function(state = initialState, action) {
     case ADD_DARE:
       return {
         ...state,
-        dares: [...state.dares, action.payload],
-        dareCounter: state.dareCounter + 1
+        dares: [action.payload, ...state.dares]
       };
     case GET_DARES:
       return {

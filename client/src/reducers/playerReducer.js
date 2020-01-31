@@ -89,12 +89,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         players: state.players.map((player) => {
-          if(player.id == action.payload){
+          if(player.id == action.payload.id){
             const newPlayer = {
               id: player.id,
               name: player.name,
               multiplier: player.multiplier,
-              dares: [...player.dares, {text: "A dare for " + player.name}]
+              dares: [...player.dares, action.payload.dare]
             }
             return newPlayer;
           } else {

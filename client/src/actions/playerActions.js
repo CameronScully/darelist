@@ -33,10 +33,10 @@ export const updateUsername = (value, id) => {
   };
 };
 
-export const darePlayer = (id) => {
+export const darePlayer = (id, dare) => {
   return {
     type: DARE_PLAYER,
-    payload: id
+    payload: {id, dare}
   };
 };
 

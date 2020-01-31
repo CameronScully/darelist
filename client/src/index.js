@@ -26,7 +26,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 //components
-import Darelist from "./layout/darelist"
+import Darelist from "./components/layout/darelist"
 
 //build font awesome library
 library.add(

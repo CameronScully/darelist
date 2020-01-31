@@ -51,9 +51,6 @@ class Player extends Component{
           <div class="col-10 offset-1">
             <Username value={this.props.name} playerID={this.props.id}/>
           </div>
-          <div class="col" id="multiplier">
-            {this.props.multiplier}
-          </div>
         </div>
         <div class="row">
           <div class="col">

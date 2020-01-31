@@ -22,20 +22,20 @@ class EditDares extends Component{
           <div>loading</div> :
           <div>
             {this.props.dares.dares.map(dare => (
-              <div class="container shadow panel" key={dare._id}>
+              <div class="container-fluid shadow panel" key={dare._id}>
                 <div class="row">
-                  <div class="col-8 offset-2">
+                  <div class="col-10 offset-1">
                     <p>
                       {dare.text}
                     </p>
                   </div>
                   <div class="col">
-                  <button>
-                    <FontAwesomeIcon icon="edit"/>
-                  </button>
-                  <button onClick={() => this.props.deleteDare(dare._id)}>
-                    <FontAwesomeIcon icon="trash-alt"/>
-                  </button>
+                    <button>
+                      <FontAwesomeIcon icon="edit"/>
+                    </button>
+                    <button onClick={() => this.props.deleteDare(dare._id)}>
+                      <FontAwesomeIcon icon="trash-alt"/>
+                    </button>
                   </div>
                 </div>
               </div>

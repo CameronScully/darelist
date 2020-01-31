@@ -22,7 +22,7 @@ class GamePage extends Component{
 
   render(){
     return(
-      <div class="container-fluid" align="center">
+      <div class="container-fluid game" align="center">
             {this.props.player.players.map((player) => (
               <div class="row" key={player.id}>
                 <div class="col">

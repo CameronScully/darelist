@@ -10,8 +10,8 @@ class Dare extends Component{
   render(){
     return(
       <div class="container" id="dareContainer">
-        <div class="row align-items-center">
-          <div class="col-10 offset-1" align="center" id="dareText">
+        <div class="row">
+          <div class="col">
             {this.props.text}
           </div>
         </div>

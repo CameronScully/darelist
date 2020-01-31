@@ -78,6 +78,15 @@ h1 {
 
 .settings {
   padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.game {
+  padding-bottom: 25px;
+}
+
+.dares {
+  background-color: pink;
 }
 
 button {

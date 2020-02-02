@@ -37,8 +37,9 @@ function translate(promptText){
     dares.push(
       {
         text: extractedText,
-        pointValue: extractedPointValue,
-        challengeable: extractedChallengeable
+        pointValue: 1,
+        challengable: false,
+        nsfw: false
       }
     );
   }

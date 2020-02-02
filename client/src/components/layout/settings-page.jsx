@@ -1,18 +1,18 @@
 //react libraries
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import '../../index.css';
+import '../../index.scss';
 import PropTypes from 'prop-types';
 
 //redux
 import { connect } from 'react-redux';
-import { addDare, getDares } from '../../actions/dareActions';
+import { addDare, filterDares, deleteDare } from '../../actions/dareActions';
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //components
-import EditDares from "../game/editDares.jsx"
+import EditDares from "../game/edit-dares.jsx"
 
 //functions
 import translate from "../../functions/textTranslator.js";
@@ -30,29 +30,39 @@ class SettingsPage extends Component{
     this.handleKeypress = this.handleKeypress.bind(this);
   }
 
+  componentDidMount(){
+    this.props.filterDares(this.state.value);
+  }
+
   handleChange(event){
     this.setState({value: event.target.value});
+    this.props.filterDares(this.state.value);
   }
 
   handleSubmit(event){
     event.preventDefault();
 
-    if(this.state.value === "admin"){
+    if(this.state.value === "admin: translate"){
       let promptText = prompt("document translate: ");
       var newDares = translate(promptText);
       for(var i = 0; i<newDares.length; i++){
         this.props.addDare(newDares[i]);
       }
+    } else if(this.state.value === "admin: reset"){
+      for(var i = 0; i<this.props.dares.dares.length; i++){
+        this.props.deleteDare(this.props.dares.dares[i]._id);
+      }
     } else {
       const newDare = {
-        text: this.state.value
+        text: this.state.value,
+        pointValue: 1,
+        challengable: false,
+        nsfw: false
       }
 
       this.props.addDare(newDare);
+
     }
-    this.setState({
-      value: ''
-    })
   }
 
   handleKeypress(event){
@@ -92,11 +102,13 @@ class SettingsPage extends Component{
 }
 
 SettingsPage.propTypes = {
-  addDare: PropTypes.func.isRequired
+  addDare: PropTypes.func.isRequired,
+  filterDares: PropTypes.func.isRequired,
+  deleteDare: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
   dares: state.dares
 });
 
-export default connect(mapStateToProps, { addDare })(SettingsPage);
+export default connect(mapStateToProps, { addDare, filterDares, deleteDare })(SettingsPage);

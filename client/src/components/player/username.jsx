@@ -1,7 +1,7 @@
 //react libraries
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import '../../index.css';
+import '../../index.scss';
 import PropTypes from 'prop-types';
 
 //redux

@@ -1,7 +1,7 @@
 //react libraries
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import '../../index.css';
+import '../../index.scss';
 import PropTypes from 'prop-types';
 
 //redux
@@ -33,7 +33,7 @@ class Player extends Component{
 
   render(){
     return(
-      <div class="container-fluid panel shadow player">
+      <div class="container panel shadow player">
         <div class="row">
           <div class="col-10 offset-2" align="right">
             <button onClick={this.darePlayer}>

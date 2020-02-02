@@ -21,3 +21,5 @@ export const ADD_DARE = 'ADD_DARE';
 export const GET_DARES = 'GET_DARES';
 export const DARES_LOADING = 'DARES_LOADING';
 export const DELETE_DARE = 'DELETE_DARE';
+export const FILTER_DARES = 'FILTER_DARES';
+export const EDIT_DARES = 'EDIT_DARES';

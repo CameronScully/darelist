@@ -2,12 +2,17 @@ import {
   ADD_DARE,
   GET_DARES,
   DARES_LOADING,
-  DELETE_DARE
+  DELETE_DARE,
+  FILTER_DARES,
+  EDIT_DARES
 } from '../actions/types.js';
 
 const initialState = {
   dares: [],
-  loading: false
+  filteredDares: [],
+  loading: false,
+  editDare: {},
+  modal: false
 }
 
 export default function(state = initialState, action) {
@@ -15,7 +20,8 @@ export default function(state = initialState, action) {
     case ADD_DARE:
       return {
         ...state,
-        dares: [action.payload, ...state.dares]
+        dares: [action.payload, ...state.dares],
+        filteredDares: [action.payload, ...state.filteredDares]
       };
     case GET_DARES:
       return {
@@ -31,7 +37,19 @@ export default function(state = initialState, action) {
     case DELETE_DARE:
       return {
         ...state,
-        dares: state.dares.filter(dare => dare._id != action.payload)
+        dares: state.dares.filter(dare => dare._id != action.payload),
+        filteredDares: state.filteredDares.filter(dare => dare._id != action.payload)
+      };
+    case FILTER_DARES:
+      return {
+        ...state,
+        filteredDares: state.dares.filter(dare => dare.text.includes(action.payload))
+      };
+    case EDIT_DARES:
+      return {
+        ...state,
+        editDare: action.payload,
+        modal: !state.modal
       };
     default:
       return state;

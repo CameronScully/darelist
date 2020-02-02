@@ -1,10 +1,13 @@
 //react libraries
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import '../../index.css';
+import '../../index.scss';
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+//font awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Dare extends Component{
   render(){
@@ -12,7 +15,7 @@ class Dare extends Component{
       <div class="container" id="dareContainer">
         <div class="row">
           <div class="col">
-            {this.props.text}
+            <FontAwesomeIcon icon="dice-one" /> {this.props.text}
           </div>
         </div>
       </div>

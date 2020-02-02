@@ -13,7 +13,10 @@ router.get('/', (req, res) => {
 //POST api/dares
 router.post('/', (req, res) => {
   const newDare = new Dare({
-    text: req.body.text
+    text: req.body.text,
+    pointValue: req.body.pointValue,
+    challengable: req.body.challengable,
+    nsfw: req.body.nsfw
   });
 
   newDare.save().then(dare => res.json(dare));

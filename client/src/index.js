@@ -1,7 +1,7 @@
 //react libraries
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,6 +24,7 @@ import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faDiceOne } from '@fortawesome/free-solid-svg-icons';
 
 //components
 import Darelist from "./components/layout/darelist"
@@ -39,7 +40,8 @@ library.add(
   faSyncAlt,
   faCog,
   faArrowLeft,
-  faEdit
+  faEdit,
+  faDiceOne
 );
 
 ReactDOM.render(

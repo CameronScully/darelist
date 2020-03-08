@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 //redux
 import { connect } from 'react-redux';
-import { getDares } from '../../actions/dareActions';
+import { getDares, getPenalties } from '../../actions/dareActions';
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,6 +19,7 @@ import GamePage from "./game-page.jsx";
 class Darelist extends Component {
   componentDidMount(){
     this.props.getDares();
+    this.props.getPenalties();
   }
 
   render(){
@@ -56,7 +57,8 @@ class Darelist extends Component {
 }
 
 Darelist.propTypes = {
-  getDares: PropTypes.func.isRequired
+  getDares: PropTypes.func.isRequired,
+  getPenalties: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -64,4 +66,4 @@ const mapStateToProps = (state) => ({
   dares: state.dares
 });
 
-export default connect(mapStateToProps, { getDares })(Darelist);
+export default connect(mapStateToProps, { getDares, getPenalties })(Darelist);

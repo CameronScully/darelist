@@ -7,7 +7,8 @@ import {
   UPDATE_USERNAME,
   DARE_PLAYER,
   RESET_PLAYER,
-  DELETE_PLAYER
+  DELETE_PLAYER,
+  PENALISE_PLAYER
  } from '../actions/types.js';
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
     id: 0,
     name: "",
     multiplier: 0,
-    dares: []
+    dares: [],
+    penalties: []
   }],
   playerCount: 1
 }
@@ -38,7 +40,8 @@ export default function(state = initialState, action) {
           id: state.playerCount,
           name: "",
           multiplier: 0,
-          dares: []
+          dares: [],
+          penalties: []
         }],
         playerCount: state.playerCount + 1
       };
@@ -50,7 +53,8 @@ export default function(state = initialState, action) {
             id: player.id,
             name: player.name,
             multiplier: player.multiplier,
-            dares: player.dares.concat({text: "a dare for everyone"})
+            dares: player.dares.concat({text: "a dare for everyone"}),
+            penalties: player.penalties
           }
           return newPlayer;
         })
@@ -63,7 +67,8 @@ export default function(state = initialState, action) {
             id: player.id,
             name: player.name,
             multiplier: player.multiplier,
-            dares: []
+            dares: [],
+            penalties: []
           }
           return newPlayer;
         })
@@ -77,7 +82,8 @@ export default function(state = initialState, action) {
               id: player.id,
               name: action.payload.value,
               multiplier: player.multiplier,
-              dares: player.dares
+              dares: player.dares,
+              penalties: player.penalties
             }
             return newPlayer;
           } else {
@@ -111,7 +117,8 @@ export default function(state = initialState, action) {
               id: player.id,
               name: player.name,
               multiplier: player.multiplier,
-              dares: []
+              dares: [],
+              penalties: []
             }
             return newPlayer;
           } else {

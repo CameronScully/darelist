@@ -1,9 +1,11 @@
 
 function translate(promptText){
   var dares = [];
+  var penalties = [];
 
   //console.log(promptText);
 
+  //load dares
   while(true){
     //find start of dare
     var dareTextStart = promptText.indexOf("The Dare:");
@@ -44,7 +46,39 @@ function translate(promptText){
     );
   }
 
-  return dares;
+  //load penalties
+  while(true){
+    //find start of penalty
+    var penaltyTextStart = promptText.indexOf("The Penalty:");
+
+    if(penaltyTextStart == -1){
+      break;
+    }
+
+    promptText = promptText.slice(penaltyTextStart+13);
+
+    //find end of penalty
+    var penaltyTextEnd = promptText.indexOf("The Penalty:");
+
+    //extract penalty
+    var extractedText = promptText.slice(0, penaltyTextEnd);
+
+    promptText = promptText.slice(penaltyTextEnd);
+
+    //new object
+    penalties.push(
+      {
+        text: extractedText
+      }
+    );
+  }
+
+  var translation = {
+    dares: dares,
+    penalties: penalties
+  };
+
+  return translation;
 
 }
 

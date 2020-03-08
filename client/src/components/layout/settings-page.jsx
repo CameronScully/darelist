@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 //redux
 import { connect } from 'react-redux';
-import { addDare, filterDares, deleteDare } from '../../actions/dareActions';
+import { addDare, filterDares, deleteDare, addPenalty, deletePenalty } from '../../actions/dareActions';
 
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -44,13 +44,19 @@ class SettingsPage extends Component{
 
     if(this.state.value === "admin: translate"){
       let promptText = prompt("document translate: ");
-      var newDares = translate(promptText);
-      for(var i = 0; i<newDares.length; i++){
-        this.props.addDare(newDares[i]);
+      var translation = translate(promptText);
+      for(var i = 0; i<translation.dares.length; i++){
+        this.props.addDare(translation.dares[i]);
+      }
+      for(var i = 0; i<translation.penalties.length; i++){
+        this.props.addPenalty(translation.penalties[i]);
       }
     } else if(this.state.value === "admin: reset"){
       for(var i = 0; i<this.props.dares.dares.length; i++){
         this.props.deleteDare(this.props.dares.dares[i]._id);
+      }
+      for(var i = 0; i<this.props.dares.penalties.length; i++){
+        this.props.deletePenalty(this.props.dares.penalties[i]._id);
       }
     } else {
       const newDare = {
@@ -104,11 +110,13 @@ class SettingsPage extends Component{
 SettingsPage.propTypes = {
   addDare: PropTypes.func.isRequired,
   filterDares: PropTypes.func.isRequired,
-  deleteDare: PropTypes.func.isRequired
+  deleteDare: PropTypes.func.isRequired,
+  addPenalty: PropTypes.func.isRequired,
+  deletePenalty: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
   dares: state.dares
 });
 
-export default connect(mapStateToProps, { addDare, filterDares, deleteDare })(SettingsPage);
+export default connect(mapStateToProps, { addDare, filterDares, deleteDare, addPenalty, deletePenalty })(SettingsPage);

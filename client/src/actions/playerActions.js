@@ -5,7 +5,8 @@ import {
   UPDATE_USERNAME,
   DARE_PLAYER,
   RESET_PLAYER,
-  DELETE_PLAYER
+  DELETE_PLAYER,
+  PENALISE_PLAYER
 } from './types';
 
 export const getPlayers = () => {
@@ -33,10 +34,17 @@ export const updateUsername = (value, id) => {
   };
 };
 
-export const darePlayer = (id, dare) => {
+export const darePlayer = (id, dare, penalty) => {
   return {
     type: DARE_PLAYER,
-    payload: {id, dare}
+    payload: {id, dare, penalty}
+  };
+};
+
+export const penalisePlayer = (id, penalty) => {
+  return {
+    type: PENALISE_PLAYER,
+    payload: {id, penalty}
   };
 };
 

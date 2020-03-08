@@ -28,7 +28,9 @@ class Player extends Component{
   darePlayer(){
     let dareIndex = Math.floor(Math.random()*this.props.dares.dares.length);
 
-    this.props.darePlayer(this.props.id, this.props.dares.dares[dareIndex]);
+    let penaltyIndex = Math.floor(Math.random()*this.props.dares.penalties.length);
+
+    this.props.darePlayer(this.props.id, this.props.dares.dares[dareIndex], this.props.dares.penalties[penaltyIndex]);
   }
 
   render(){
@@ -54,7 +56,7 @@ class Player extends Component{
         </div>
         <div class="row">
           <div class="col">
-            <Dares dares={this.props.playerDares}/>
+            <Dares playerID={this.props.id} dares={this.props.playerDares}/>
           </div>
         </div>
       </div>
@@ -65,7 +67,8 @@ class Player extends Component{
 Player.propTypes = {
   darePlayer: PropTypes.func.isRequired,
   resetPlayer: PropTypes.func.isRequired,
-  dares: PropTypes.object.isRequired
+  dares: PropTypes.object.isRequired,
+  penalties: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => ({

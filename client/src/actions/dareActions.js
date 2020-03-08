@@ -5,11 +5,14 @@ import {
   DARES_LOADING,
   DELETE_DARE,
   FILTER_DARES,
-  EDIT_DARES
+  EDIT_DARES,
+  ADD_PENALTY,
+  DELETE_PENALTY,
+  GET_PENALTIES,
+  PENALTIES_LOADING
 } from './types';
 
 export const addDare = dare => dispatch => {
-  console.log(dare);
   axios
     .post('/api/dares', dare)
     .then(res =>
@@ -18,6 +21,40 @@ export const addDare = dare => dispatch => {
         payload: res.data
       })
     )
+};
+
+export const addPenalty = penalty => dispatch => {
+  axios
+    .post('/api/penalties', penalty)
+    .then(res =>
+      dispatch({
+        type: ADD_PENALTY,
+        payload: res.data
+      })
+    )
+};
+
+export const getPenalties = () => dispatch => {
+  dispatch(setPenaltiesLoading());
+  axios
+    .get('/api/penalties')
+    .then(res =>
+      dispatch({
+        type: GET_PENALTIES,
+        payload: res.data
+      })
+    )
+};
+
+export const deletePenalty = id => dispatch => {
+  axios
+    .delete(`/api/penalties/${id}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_PENALTY,
+        payload: id
+      })
+  )
 };
 
 export const editDare = dare => {
@@ -42,6 +79,12 @@ export const getDares = () => dispatch => {
 export const setDaresLoading = () => {
   return {
     type: DARES_LOADING
+  };
+};
+
+export const setPenaltiesLoading = () => {
+  return {
+    type: PENALTIES_LOADING
   };
 };
 

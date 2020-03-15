@@ -17,18 +17,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class Dare extends Component{
   constructor(props){
     super(props);
-    this.state = {
-      failed: false
-    };
+
     this.fail = this.fail.bind(this);
   }
 
   fail(){
-    this.setState({failed: !this.state.failed});
-
     let penaltyIndex = Math.floor(Math.random()*this.props.dares.penalties.length);
 
-    this.props.penalisePlayer(this.props.playerID, this.props.key, this.props.dares.penalties[penaltyIndex]);
+    this.props.penalisePlayer(this.props.playerID, this.props.dareID, this.props.dares.penalties[penaltyIndex]);
   }
 
   render(){
@@ -37,12 +33,12 @@ class Dare extends Component{
         <div class="container" id="dareContainer">
           <div class="row">
             <div class="col">
-              {this.state.failed ? 
+              {this.props.dare.failed ? 
                 <div>
-                  <strike><FontAwesomeIcon icon="dice-one" /> {this.props.text}</strike> 
-                  {this.props.penalty}
+                  <strike><FontAwesomeIcon icon="dice-one" /> {this.props.dare.text}</strike> 
+                  <div class="penalty">{this.props.dare.penalty.text}</div>
                 </div> :
-                <div><FontAwesomeIcon icon="dice-one" /> {this.props.text}</div>
+                <div><FontAwesomeIcon icon="dice-one" /> {this.props.dare.text}</div>
               }
             </div>
           </div>

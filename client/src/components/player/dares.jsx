@@ -13,10 +13,10 @@ class Dares extends Component{
   render(){
     return(
       <div class="container-fluid">
-        {this.props.dares.map((dare, index) => (
+        {this.props.dares.map((dare) => (
           <div class="row">
             <div class="col">
-              <Dare key={dare.id} text={this.props.dares[index].text} />
+              <Dare key={dare._id} dareID={dare._id} playerID={this.props.playerID} dare={dare} />
             </div>
           </div>
         ))}

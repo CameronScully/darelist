@@ -5,7 +5,6 @@ const path = require('path');
 
 const dares = require('./routes/api/dares.js');
 const penalties = require('./routes/api/penalties.js');
-const resume = require('./routes/api/resume.js');
 
 const app = express();
 
@@ -26,9 +25,6 @@ mongoose
 //User routes
 app.use('/api/dares', dares);
 app.use('/api/penalties', penalties);
-
-//resume
-app.use('/resume', )
 
 // serve static assests
 if(process.env.NODE_ENV === 'production') {

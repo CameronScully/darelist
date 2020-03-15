@@ -28,9 +28,7 @@ class Player extends Component{
   darePlayer(){
     let dareIndex = Math.floor(Math.random()*this.props.dares.dares.length);
 
-    let penaltyIndex = Math.floor(Math.random()*this.props.dares.penalties.length);
-
-    this.props.darePlayer(this.props.id, this.props.dares.dares[dareIndex], this.props.dares.penalties[penaltyIndex]);
+    this.props.darePlayer(this.props.id, this.props.dares.dares[dareIndex]);
   }
 
   render(){

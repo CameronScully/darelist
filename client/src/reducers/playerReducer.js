@@ -16,8 +16,7 @@ const initialState = {
     id: 0,
     name: "",
     multiplier: 0,
-    dares: [],
-    penalties: []
+    dares: []
   }],
   playerCount: 1
 }
@@ -44,20 +43,6 @@ export default function(state = initialState, action) {
           penalties: []
         }],
         playerCount: state.playerCount + 1
-      };
-    case DARE_PLAYERS:
-      return {
-        ...state,
-        players: state.players.map((player) => {
-          const newPlayer = {
-            id: player.id,
-            name: player.name,
-            multiplier: player.multiplier,
-            dares: player.dares.concat({text: "a dare for everyone"}),
-            penalties: player.penalties
-          }
-          return newPlayer;
-        })
       };
     case RESET_PLAYERS:
       return {
@@ -101,6 +86,38 @@ export default function(state = initialState, action) {
               name: player.name,
               multiplier: player.multiplier,
               dares: [...player.dares, action.payload.dare]
+            }
+            return newPlayer;
+          } else {
+            return player;
+          }
+        })
+      };
+    case PENALISE_PLAYER:
+      return {
+        ...state,
+        players: state.players.map((player) => {
+          if(player.id == action.payload.playerID){
+            const newPlayer = {
+              id: player.id,
+              name: player.name,
+              multiplier: player.multiplier,
+              dares: player.dares.map((dare) => {
+                console.log(dare._id + "==" + action.payload.dareID);
+                if(dare._id == action.payload.dareID){
+                  const newDare = {
+                    text: dare.text,
+                    pointValue: dare.pointValue,
+                    challengable: dare.challengable,
+                    nsfw: dare.nsfw,
+                    failed: !dare.failed,
+                    penalty: action.payload.penalty
+                  };
+                  return newDare;
+                } else {
+                  return dare;
+                }
+              })
             }
             return newPlayer;
           } else {

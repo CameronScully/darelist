@@ -34,17 +34,17 @@ export const updateUsername = (value, id) => {
   };
 };
 
-export const darePlayer = (id, dare, penalty) => {
+export const darePlayer = (id, dare) => {
   return {
     type: DARE_PLAYER,
-    payload: {id, dare, penalty}
+    payload: {id, dare}
   };
 };
 
-export const penalisePlayer = (id, penalty) => {
+export const penalisePlayer = (playerID, dareID, penalty) => {
   return {
     type: PENALISE_PLAYER,
-    payload: {id, penalty}
+    payload: {playerID, dareID, penalty}
   };
 };
 

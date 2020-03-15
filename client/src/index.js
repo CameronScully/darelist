@@ -24,7 +24,7 @@ import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { faDiceOne } from '@fortawesome/free-solid-svg-icons';
+import { faDiceOne, faDiceTwo, faDiceThree, faDiceFour, faDiceFive} from '@fortawesome/free-solid-svg-icons';
 
 //components
 import Darelist from "./components/layout/darelist"
@@ -41,7 +41,11 @@ library.add(
   faCog,
   faArrowLeft,
   faEdit,
-  faDiceOne
+  faDiceOne,
+  faDiceTwo,
+  faDiceThree,
+  faDiceFour,
+  faDiceFive,
 );
 
 ReactDOM.render(

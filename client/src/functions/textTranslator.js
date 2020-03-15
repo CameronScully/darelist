@@ -23,14 +23,18 @@ function translate(promptText){
     //extract point Value
     var extractedPointValue = promptText.slice(dareTextEnd+13, dareTextEnd+14);
 
+    console.log(extractedPointValue)
+
     //extract challengeable
-    var extractedChallengeable = promptText.slice(dareTextEnd+30, dareTextEnd+32);
+    var challengableStart = promptText.indexOf("Challengeable:");
+    var extractedChallengeable = promptText.slice(challengableStart+15, challengableStart+17);
 
     if(extractedChallengeable == "Ye"){
-      extractedChallengeable = promptText.slice(dareTextEnd+30, dareTextEnd+33);
+      extractedChallengeable = true;
       //cut string
       promptText = promptText.slice(dareTextEnd+33);
     } else {
+      extractedChallengeable = false;
       //cut string
       promptText = promptText.slice(dareTextEnd+32);
     }
@@ -39,8 +43,8 @@ function translate(promptText){
     dares.push(
       {
         text: extractedText,
-        pointValue: 1,
-        challengable: false,
+        pointValue: parseInt(extractedPointValue),
+        challengable: extractedChallengeable,
         nsfw: false
       }
     );

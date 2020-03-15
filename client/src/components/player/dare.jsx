@@ -28,19 +28,47 @@ class Dare extends Component{
   }
 
   render(){
+    let pointIcon;
+    switch(this.props.dare.pointValue){
+      case 2:
+        pointIcon = <FontAwesomeIcon icon="dice-two" />;
+        break;
+      case 3:
+        pointIcon = <FontAwesomeIcon icon="dice-three" />;
+        break;
+      case 4:
+        pointIcon = <FontAwesomeIcon icon="dice-four" />;
+        break;
+      case 5:
+        pointIcon = <FontAwesomeIcon icon="dice-five" />;
+        break;
+      default:
+        pointIcon = <FontAwesomeIcon icon="dice-one" />;
+        break;
+    };
+
     return(
       <button onClick={this.fail}>
-        <div class="container" id="dareContainer">
+        <div class="container-fluid" id="dareContainer">
           <div class="row">
-            <div class="col">
+            
+            <div class="col-1">
+              {pointIcon}
+            </div>
+
+            <div class="col-10">
               {this.props.dare.failed ? 
-                <div>
-                  <strike><FontAwesomeIcon icon="dice-one" /> {this.props.dare.text}</strike> 
-                  <div class="penalty">{this.props.dare.penalty.text}</div>
-                </div> :
-                <div><FontAwesomeIcon icon="dice-one" /> {this.props.dare.text}</div>
+                  <div>
+                    <strike>{this.props.dare.text}</strike> 
+                    <div class="penalty">{this.props.dare.penalty.text}</div>
+                  </div> : <div>{this.props.dare.text}</div>
               }
             </div>
+
+            <div class="col-1">
+              {this.props.dare.challengable ? <i>Challengable</i> : ""}
+            </div>
+
           </div>
         </div>
       </button>

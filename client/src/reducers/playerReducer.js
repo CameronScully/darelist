@@ -106,6 +106,7 @@ export default function(state = initialState, action) {
                 console.log(dare._id + "==" + action.payload.dareID);
                 if(dare._id == action.payload.dareID){
                   const newDare = {
+                    _id: dare._id,
                     text: dare.text,
                     pointValue: dare.pointValue,
                     challengable: dare.challengable,

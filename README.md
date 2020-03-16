@@ -13,3 +13,6 @@ A browser game for allocating dares.
 - [ ] Layout fixes for dare allocation
 - [ ] Toggle for judge player for dare immunity
 - [ ] NSFW Filter
+
+## Bugs
+- [ ] If a player is allocated the same dare twice,  failed one dare fails the other too.

@@ -12,3 +12,4 @@ A browser game for allocating dares.
 - [ ] Server side game adaption
 - [ ] Layout fixes for dare allocation
 - [ ] Toggle for judge player for dare immunity
+- [ ] NSFW Filter

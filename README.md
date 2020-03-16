@@ -11,3 +11,4 @@ A browser game for allocating dares.
 - [ ] Finish edit dares modal
 - [ ] Server side game adaption
 - [ ] Layout fixes for dare allocation
+- [ ] Toggle for judge player for dare immunity
